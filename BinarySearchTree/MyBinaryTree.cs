@@ -1,5 +1,4 @@
-﻿using BinarySearchTree;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +9,8 @@ namespace BinarySearchTree
     internal class MyBinaryTree<T> where T : IComparable
     {
         public INode<T> root;
-        //Creates the node.
-        public void CreateNode(T value)
+        /// insert the node into bst.
+        public void InsertNode(T value)
         {
             INode<T> newNode = new INode<T>(value);
             if (root == null)
@@ -22,34 +21,89 @@ namespace BinarySearchTree
             {
                 INode<T> parent = root;
                 INode<T> current = root;
-                if (current.data.CompareTo(value) >= 0)
+                while (true)
                 {
-                    parent.leftTree = newNode;
-                    return;
-                }
-                else
-                {
-                    parent.rightTree = newNode;
-                    return;
+                    parent = current;
+                    if (current.data.CompareTo(value) >= 0)
+                    {
+                        current = current.left;
+                        if (current == null)
+                        {
+                            parent.left = newNode;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        current = current.right;
+                        if (current == null)
+                        {
+                            parent.right = newNode;
+                            break;
+                        }
+                    }
                 }
             }
         }
-        //Displays Nodes in Binary search Tree
-        public void Display()
+        /// display the binary search tree.
+        public void Display(INode<T> parent)
         {
-            INode<T> temp = root;
-            if (temp != null)
+            if (parent != null)
             {
-                Console.WriteLine("Root Node:{0}", temp.data.ToString());
+                Display(parent.left);
+                Display(parent.right);
+                Console.WriteLine("{0} is BST Node", parent.data);
             }
-            if (temp.leftTree != null)
+        }
+        /// display the root node of BST.
+        public void Root()
+        {
+            do
             {
-                Console.WriteLine("Left Node:{0}", temp.leftTree.data.ToString());
-            }
-            if (temp.rightTree != null)
+                Console.WriteLine("BST Root Node:" + root.data);
+                break;
+            } while (root != null);
+        }
+        /// print the bst in pre-order.
+        public void PreOrder(INode<T> root)
+        {
+            if (root == null)
             {
-                Console.WriteLine("Right Node:{0}", temp.rightTree.data.ToString());
+                return;
             }
+            Console.WriteLine(root.data + " ");
+            PreOrder(root.left);
+            PreOrder(root.right);
+        }
+        /// print the bst in in-order.
+        public void InOrder(INode<T> root)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            InOrder(root.left);
+            Console.WriteLine(root.data + " ");
+            InOrder(root.right);
+        }
+        /// print the bst in post-order.
+        public void PostOrder(INode<T> root)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            PostOrder(root.left);
+            PostOrder(root.right);
+            Console.WriteLine(root.data + " ");
+        }
+        /// length of bst
+        public int Size(INode<T> root)
+        {
+            if (root == null)
+                return 0;
+            else
+                return (Size(root.left) + 1 + Size(root.right));
         }
     }
 }

@@ -10,14 +10,14 @@ namespace BinarySearchTree
     {
         //Variables
         public T data;
-        public INode<T> leftTree;
-        public INode<T> rightTree;
-        //Initializes a new instance of the Node.
+        public INode<T> left;
+        public INode<T> right;
+        /// Initializes a new instance of the Node.
         public INode(T data)
         {
             this.data = data;
-            leftTree = null;
-            rightTree = null;
+            left = null;
+            right = null;
         }
     }
 }

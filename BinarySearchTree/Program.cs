@@ -14,15 +14,32 @@ namespace BinarySearchTree
             DisplayBST();
             Console.ReadLine();
         }
-        //Method to Initialize Nodes.
+        /// Method to Initialize Nodes.
         public static void DisplayBST()
         {
-            MyBinaryTree<int> tree = new MyBinaryTree<int>();
-            tree.CreateNode(56);
-            tree.CreateNode(30);
-            tree.CreateNode(70);
-            Console.WriteLine("Display Nodes present in Binary Search Tree");
-            tree.Display();
+            MyBinaryTree<int> mybinarynode = new MyBinaryTree<int>();
+            mybinarynode.InsertNode(56);
+            mybinarynode.InsertNode(30);
+            mybinarynode.InsertNode(70);
+            mybinarynode.InsertNode(22);
+            mybinarynode.InsertNode(40);
+            mybinarynode.InsertNode(60);
+            mybinarynode.InsertNode(95);
+            mybinarynode.InsertNode(11);
+            mybinarynode.InsertNode(65);
+            mybinarynode.InsertNode(3);
+            mybinarynode.InsertNode(16);
+            mybinarynode.InsertNode(63);
+            mybinarynode.InsertNode(67);
+            mybinarynode.Display(mybinarynode.root);
+            mybinarynode.Root();
+            Console.WriteLine("Pre-Order Binary Search Tree");
+            mybinarynode.PreOrder(mybinarynode.root);
+            Console.WriteLine("In-Order Binary Search Tree");
+            mybinarynode.InOrder(mybinarynode.root);
+            Console.WriteLine("Post-Order Binary Search Tree");
+            mybinarynode.PostOrder(mybinarynode.root);
+            Console.WriteLine("The number of nodes in BST:{0}", mybinarynode.Size(mybinarynode.root));
         }
     }
 }
