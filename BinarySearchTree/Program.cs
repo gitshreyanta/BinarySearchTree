@@ -40,6 +40,15 @@ namespace BinarySearchTree
             Console.WriteLine("Post-Order Binary Search Tree");
             mybinarynode.PostOrder(mybinarynode.root);
             Console.WriteLine("The number of nodes in BST:{0}", mybinarynode.Size(mybinarynode.root));
+            bool found = mybinarynode.Search(mybinarynode.root, 56);
+            if (found == true)
+            {
+                Console.WriteLine("Key found");
+            }
+            else
+            {
+                Console.WriteLine("Key not found");
+            }
         }
     }
 }
